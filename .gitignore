@@ -1,0 +1,54 @@
+# Virtual Environment
+ml_env/
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Data files (optional - uncomment if you have large datasets)
+# *.csv
+# *.json
+# *.pkl
+# data/
+
+# Model files (optional - uncomment if you have large model files)
+# *.h5
+# *.pkl
+# *.joblib
+# models/ 

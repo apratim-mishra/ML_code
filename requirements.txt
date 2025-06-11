@@ -1,0 +1,89 @@
+# Core Data Science Libraries
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+xgboost>=1.7.0
+lightgbm>=4.0.0
+catboost>=1.2.0
+
+# Deep Learning - PyTorch Ecosystem
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+pytorch-lightning>=2.0.0
+
+# Transformers and NLP
+transformers>=4.30.0
+tokenizers>=0.13.0
+datasets>=2.12.0
+accelerate>=0.20.0
+sentencepiece>=0.1.99
+sacremoses>=0.0.53
+
+# Computer Vision
+opencv-python>=4.8.0
+Pillow>=10.0.0
+albumentations>=1.3.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+bokeh>=3.2.0
+
+# Jupyter and Development
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.0.0
+notebook>=7.0.0
+
+# Model Deployment and Serving
+fastapi>=0.100.0
+uvicorn>=0.22.0
+gradio>=3.35.0
+streamlit>=1.25.0
+
+# MLOps and Experiment Tracking
+mlflow>=2.5.0
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Data Processing and Feature Engineering
+polars>=0.18.0
+pyarrow>=12.0.0
+featuretools>=1.25.0
+
+# Statistical Libraries
+statsmodels>=0.14.0
+pingouin>=0.5.3
+
+# Hyperparameter Optimization
+optuna>=3.2.0
+ray[tune]>=2.5.0
+
+# Audio Processing
+librosa>=0.10.0
+soundfile>=0.12.0
+
+# Network Analysis
+networkx>=3.1.0
+
+# Time Series
+prophet>=1.1.4
+darts>=0.24.0
+
+# Utilities
+tqdm>=4.65.0
+requests>=2.31.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+rich>=13.4.0
+
+# Testing and Quality
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+isort>=5.12.0 
