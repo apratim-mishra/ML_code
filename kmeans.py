@@ -82,33 +82,85 @@ class KMeans:
         return labels
 
 
+def generate_clustering_data(sample_size, features_size, num_clusters=3):
+    """Generate random data with natural clusters."""
+    data = []
+    
+    # Create cluster centers
+    cluster_centers = []
+    for _ in range(num_clusters):
+        center = [random.uniform(-5, 5) for _ in range(features_size)]
+        cluster_centers.append(center)
+    
+    # Generate points around each cluster center
+    points_per_cluster = sample_size // num_clusters
+    remaining_points = sample_size % num_clusters
+    
+    for i, center in enumerate(cluster_centers):
+        # Add extra points to first clusters if sample_size not evenly divisible
+        cluster_size = points_per_cluster + (1 if i < remaining_points else 0)
+        
+        for _ in range(cluster_size):
+            # Generate point near cluster center with some noise
+            point = []
+            for j in range(features_size):
+                noise = random.uniform(-1.5, 1.5)  # Add noise around center
+                point.append(center[j] + noise)
+            data.append(point)
+    
+    # Shuffle the data so clusters are mixed
+    random.shuffle(data)
+    return data
+
+
 # Example usage
 if __name__ == "__main__":
-    # Sample data: 2D points
-    data = [
-        [1, 2], [1, 4], [1, 0],
-        [10, 2], [10, 4], [10, 0],
-        [5, 5], [6, 5], [4, 5]
-    ]
-    
     print("Simple K-Means Example")
     print("=" * 30)
     
+    # Configuration parameters
+    SAMPLE_SIZE = 100
+    FEATURES_SIZE = 2
+    K_CLUSTERS = 3
+    MAX_ITERATIONS = 10
+    
+    print(f"Sample size: {SAMPLE_SIZE}, Features: {FEATURES_SIZE}, Clusters: {K_CLUSTERS}")
+    
+    # Set random seed for reproducibility
+    random.seed(42)
+    
+    # Generate random clustering data
+    data = generate_clustering_data(SAMPLE_SIZE, FEATURES_SIZE, K_CLUSTERS)
+    
+    print(f"\nSample data points:")
+    for i in range(5):
+        print(f"  Point {i+1}: {[round(x, 2) for x in data[i]]}")
+    
     # Create and fit model
-    kmeans = KMeans(k=3, max_iters=5)
+    kmeans = KMeans(k=K_CLUSTERS, max_iters=MAX_ITERATIONS)
     kmeans.fit(data)
     
-    print("Original data:")
-    for i, point in enumerate(data):
-        print(f"  Point {i+1}: {point} -> Cluster {kmeans.labels[i]}")
+    print(f"\nCluster assignments (first 10 points):")
+    for i in range(min(10, len(data))):
+        print(f"  Point {i+1}: {[round(x, 2) for x in data[i]]} -> Cluster {kmeans.labels[i]}")
     
-    print("\nFinal centroids:")
+    print(f"\nFinal centroids:")
     for i, centroid in enumerate(kmeans.centroids):
-        print(f"  Cluster {i}: [{centroid[0]:.1f}, {centroid[1]:.1f}]")
+        centroid_rounded = [round(x, 2) for x in centroid]
+        print(f"  Cluster {i}: {centroid_rounded}")
     
-    # Test prediction on new data
-    new_data = [[2, 3], [9, 1]]
-    predictions = kmeans.predict(new_data)
-    print("\nPredictions for new data:")
-    for point, pred in zip(new_data, predictions):
-        print(f"  {point} -> Cluster {pred}") 
+    # Test prediction on new random data
+    test_data = generate_clustering_data(5, FEATURES_SIZE, K_CLUSTERS)
+    predictions = kmeans.predict(test_data)
+    print(f"\nPredictions for new data:")
+    for point, pred in zip(test_data, predictions):
+        print(f"  {[round(x, 2) for x in point]} -> Cluster {pred}")
+    
+    # Count points in each cluster
+    cluster_counts = [0] * K_CLUSTERS
+    for label in kmeans.labels:
+        cluster_counts[label] += 1
+    
+    print(f"\nCluster sizes:")
+    for i, count in enumerate(cluster_counts):
+        print(f"  Cluster {i}: {count} points") 
